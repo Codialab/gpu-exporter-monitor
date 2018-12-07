@@ -1,13 +1,6 @@
 version: '2.3'
 
 services:
-    # prometheus:
-    #     build: prometheus
-    #     ports:
-    #         - 9090:9090
-    #     networks:
-    #         - default
-
     node_exporter:
         image: prom/node-exporter
         command: --collector.textfile.directory=/run/prometheus
@@ -19,15 +12,6 @@ services:
             - 9100:9100
         networks:
             - default
-
-    # grafana:
-    #     image: grafana/grafana
-    #     volumes:
-    #         - grafana_data:/var/lib/grafana
-    #     ports:
-    #         - 3000:3000
-    #     networks:
-    #         - default
 
     dcgm_exporter:
         image: nvidia/dcgm-exporter:1.4.3
@@ -44,8 +28,6 @@ volumes:
             device: tmpfs
     prometheus_data:
         driver: local
-    # grafana_data:
-    #     driver: local
 
 networks:
     default:
